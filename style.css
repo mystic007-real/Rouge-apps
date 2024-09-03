@@ -1,78 +1,103 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
-
-body, html {
+/* Global styles */
+body {
     margin: 0;
     padding: 0;
-    width: 100%;
-    height: 100%;
     font-family: 'JetBrains Mono', monospace;
-    background-color: #121212;
     overflow: hidden;
 }
 
-.start-page, .select-page {
+/* Start page styles */
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2rem;
+    color: #fff;
+    margin: 0;
+}
+
+.start-button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 20px;
+    background: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+/* Dots falling animation */
+.dots {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.dots::before {
+    content: "";
+    position: absolute;
+    top: -100px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.5) 20%, transparent 20%);
+    background-size: 5% 5%;
+    animation: falling 10s linear infinite;
+}
+
+@keyframes falling {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(100%);
+    }
+}
+
+/* Apps page styles */
+.app-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
-    color: white;
+    text-align: center;
 }
 
-.start-page {
-    position: relative;
+.app {
+    margin: 10px;
 }
 
-#startButton {
-    background-color: #1a73e8;
-    color: white;
-    border: none;
-    padding: 15px 30px;
-    border-radius: 25px;
-    cursor: pointer;
-    font-size: 18px;
-    margin-top: 20px;
+.app a {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1rem;
 }
 
-#startButton:hover {
-    background-color: #135ab7;
-}
-
-.select-page {
-    display: none;
-    position: relative;
-    flex-wrap: wrap;
-}
-
-.app-icons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-}
-
-.app-icons a img {
-    width: 100px;
-    height: 100px;
-    transition: transform 0.3s;
-}
-
-.app-icons a img:hover {
-    transform: scale(1.1);
-}
-
-@keyframes fall {
-    0% { transform: translateY(-10px); opacity: 1; }
-    100% { transform: translateY(100vh); opacity: 0; }
-}
-
-.dot {
+.app-frame {
     position: absolute;
-    top: -10px;
-    width: 5px;
-    height: 5px;
-    background-color: white;
-    border-radius: 50%;
-    animation: fall linear infinite;
-    opacity: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    z-index: 0;
 }
